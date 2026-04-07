@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpFa Skill Tree</title>
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #050505;
+            color: #c5c6c7;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        #parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('/background.jpg');
+            background-size: 200%;
+            background-position: center;
+            opacity: 0.4;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        #skill-tree-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 2;
+        }
+
+        .tooltip {
+            position: absolute;
+            text-align: center;
+            padding: 12px;
+            font-size: 14px;
+            background: rgba(5, 5, 10, 0.95);
+            border: 1px solid;
+            border-radius: 8px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            box-shadow: 0 0 15px rgba(0,0,0,0.8);
+            color: #fff;
+            z-index: 10;
+        }
+
+        .tooltip h4 {
+            margin: 0 0 5px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .node-label {
+            font-size: 13px;
+            fill: #ffffff;
+            text-anchor: middle;
+            font-weight: bold;
+            pointer-events: none;
+            text-shadow: 0px 2px 4px #000000, 0px -2px 4px #000000, 2px 0px 4px #000000, -2px 0px 4px #000000;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="parallax-bg"></div>
+    <div id="skill-tree-container"></div>
+    <div id="tooltip" class="tooltip"></div>
+
+    <script>
+        const skillTreeData = {
+            name: "Git Gud", cluster: "base", rank: 0, description: "Git SCM Basics<br>📖 Pro Git - <i>Chacon, Straub</i>", unlocked: false,
+            children: [{
+                name: "Design Patterns", cluster: "development", rank: 1, description: "📖 Head First Design Patterns - <i>Freeman, Robson</i>", unlocked: false, children: [
+                    { name: "POSA", cluster: "development", rank: 2, description: "Pattern Oriented Software Architecture - Volume 1", unlocked: false, children: [
+                        { name: "Architectural Patterns", cluster: "development", rank: 3, description: "POSA 2, 3, 4, 5", unlocked: false }
+                    ] },
+                    { name: "Functional Programming", cluster: "development", rank: 2, description: "Functional Immutability, Purity, Operations (map, filter, reduce), ...", unlocked: false }
+                ]
+            }, {
+                name: "Algorithms and Data Structures", cluster: "development", rank: 1, description: "Lists, Sets, Maps, Sort, Search, ...<br>📖 Data Structures and Algorithms - <i>Aho, Hopcroft, Ullman</i>", unlocked: false, children: [
+                    { name: "Strings", cluster: "development", rank: 2, description: "Charsets, Encodings, Unicode, ...", unlocked: false },
+                    { name: "Datetimes", cluster: "development", rank: 2, description: "Dates, Timezones, ...", unlocked: false },
+                    { name: "Algorithmic Efficiency", cluster: "development", rank: 2, description: "Analyze Algorithms and Data Structures Space and Time Efficiency<br>📖 Introduction to Algorithms - <i>Cormen, Leiserson, Rivest, Stein</i>", unlocked: false, children: [
+                        { name: "Compilers", cluster: "development", rank: 3, description: "Compilers, Programming Languages Formal Semantics, Type Systems, ...<br>📖 Compilers - <i>Aho, Lam, Sethi, Ullman</i>", unlocked: false },
+                    ] }
+                ]
+            }, {
+                name: "Java", cluster: "development", rank: 1, description: "📖 Head First Java - <i>Sierra, Bates</i><br>📖 Effective Java - <i>Bloch</i>", unlocked: false,
+                children: [
+                    { name: "Java API", cluster: "development", rank: 1, description: "Java API SPecification: collections, networking, ...", unlocked: false },
+                    { name: "JUnit", cluster: "development", rank: 1, description: "JUnit guide", unlocked: false, children: [
+                        { name: "Integration Tests", cluster: "development", rank: 2, description: "Integration Tests, JUnit Runners, Spring Runner, ...", unlocked: false },
+                    ] },
+                    { name: "Maven", cluster: "development", rank: 1, description: "mvn goals, pom.xml, ...", unlocked: false },
+                    { name: "Spring Framework", cluster: "development", rank: 2, description: "Application Context, Servlet, Web Applications, ...", unlocked: false, children: [
+                        { name: "Spring Data", cluster: "development", rank: 2, description: "JDBC, JPA, Pagination, Filtering, ...", unlocked: false },
+                        { name: "Spring Security", cluster: "development", rank: 2, description: "Security Filter Chain", unlocked: false },
+                    ] },
+                ]
+            }, {
+                name: "HTML", cluster: "development", rank: 1, description: "HTML tags, classes, properties, styles<br>📖 HTML&amp;CSS: Design and Build Websites - <i>Duckett</i>", unlocked: false,
+                children: [
+                    { name: "JavaScript", cluster: "development", rank: 1, description: "JavaScript: the Good Parts", unlocked: false }
+                ]
+            }, {
+                name: "Rust", cluster: "development", rank: 2, description: "📖 Programming Rust - <i>Blandy, Orendorff, Tindall</i>", unlocked: false
+            }, {
+                name: "Programming Languages", cluster: "development", rank: 3, description: "Overview of Other Programming Languages and Paradigms<br>📖 Seven Languages in Seven Weeks - <i>Tate</i><br>📖 Seven More Languages in Seven Weeks - <i>Tate</i>", unlocked: false
+            }, {
+                name: "Linux Shell", cluster: "operations", rank: 1, description: "Basic commands", unlocked: false,
+                children: [
+                    { name: "make", cluster: "operations", rank: 1, description: "Makefiles", unlocked: false, children: [
+                        { name: "Ansible", cluster: "operations", rank: 2, description: "Ansible", unlocked: false }
+                    ] },
+                    { name: "Cloud", cluster: "operations", rank: 1, description: "AWS Basics", unlocked: false, children: [
+                        { name: "Terraform", cluster: "operations", rank: 2, description: "Terraform", unlocked: false },
+                        { name: "Monitoring", cluster: "operations", rank: 2, description: "Cloud Monitoring Tools: Grafana, Prometheus, ...", unlocked: false }
+                    ]  },
+                    { name: "Operating Systems", cluster: "operations", rank: 3, description: "📖 Sistemi Operativi - <i>Tanenbaum, Woodhull</i>", unlocked: false }
+                ]
+            }, {
+                name: "Cyber Hygiene", cluster: "security", rank: 1, description: "Cyber Hygiene - European Union Agency for Cybersecurity", unlocked: false, children: [
+                    { name: "Vulnerabilities", cluster: "security", rank: 2, description: "Buffer Overflow, XSS, CSRF", unlocked: false, children: [
+                        { name: "Security Reports", cluster: "security", rank: 3, description: "Understand Security Reports and Fix Open Vulnerabilities", unlocked: false }
+                    ]  },
+                    { name: "Application Security", cluster: "security", rank: 2, description: "AAA, ...", unlocked: false, children: [
+                        { name: "Keycloak", cluster: "security", rank: 3, description: "IDM Configuration, Management and Integration", unlocked: false },
+                        { name: "Hardening", cluster: "security", rank: 3, description: "Proxy, HSTS, CSP, CSRF, XSS Protection, Cookies, ...", unlocked: false }
+                    ] },
+                    { name: "Security Protocols", cluster: "security", rank: 2, description: "SSH, TLS, PKI, ...", unlocked: false, children: [
+                        { name: "Cryptography", cluster: "security", rank: 3, description: "Algorithms for Encryption, Hashing, Signature, ...", unlocked: false }
+                    ] },
+                ]
+            }, {
+                name: "Networking", cluster: "networking", rank: 1, description: "Networking Basics: IP Addresses, TCP, UDP, ...<br>📖 Reti di Computer - <i>Tanenbaum</i>", unlocked: false, children: [
+                    { name: "L7 Protocols", cluster: "networking", rank: 2, description: "Application Layer Protocols: HTTP(s), SSH, ...", unlocked: false, children: [
+                        { name: "Network Protocols", cluster: "networking", rank: 3, description: "Common Protocols: DNS, DHCP, ...", unlocked: false },
+                        { name: "Traffic Capture", cluster: "networking", rank: 3, description: "Wireshark, tcpdump, pcap, Captured Traffic Analysis", unlocked: false },
+                    ] },
+                    { name: "Firewall", cluster: "networking", rank: 2, description: "Linux Firewall Configuration", unlocked: false },
+                    { name: "VPN", cluster: "networking", rank: 2, description: "VPN Setup, SSH Tunnelling", unlocked: false }
+                ]
+            }, {
+                name: "Agile", cluster: "principles", rank: 1, description: "The Agile Manifesto", unlocked: false, children: [
+                    { name: "Clean Code", cluster: "principles", rank: 1, description: "Agile Principles, SOLID, TDD<br>📖 Clean Code: A Handbook of Agile Software Craftsmanship - <i>Martin</i><br>📖 97 Things Every Programmer Should Know - <i>Henney</i>", unlocked: false },
+                    { name: "Lean", cluster: "principles", rank: 1, description: "📖 Lean Software Development - <i>Poppendieck</i>", unlocked: false, children: [
+                        { name: "A3 Thinking", cluster: "principles", rank: 2, description: "Collaborative Problem Solving", unlocked: false }
+                    ] }
+                ]
+            }, {
+                name: "OptionFactory", cluster: "base", rank: 1, description: "Company Culture, Market and Offering", unlocked: false, children: [
+                    { name: "Organizational Model", cluster: "base", rank: 2, description: "Company Structure, Micro-entrepreneurial Approach", unlocked: false, children: [
+                        { name: "Vision", cluster: "base", rank: 3, description: "Business Vision, Trade-offs, Initiative Propositions", unlocked: false }
+                    ] }
+                ]
+            }]
+        };
+
+        const clusterColors = {
+            base: "#ffffff", // Pure White
+            development: "#33ccff", // Power Azure
+            operations: "#33ff33", // Console Green
+            security: "#ff3333", // Threat Red
+            networking: "#dd33ff", // Connection Violet
+            principles: "#ccaa33" // Enlighting Yellow
+        };
+
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const radius = 1000;
+
+        const parallaxBg = document.getElementById('parallax-bg');
+
+        const zoom = d3.zoom()
+            .scaleExtent([0.4, 2.5])
+            .on("zoom", (event) => {
+                svgGroup.attr("transform", event.transform);
+                const parallaxMultiplier = 0.3;
+                const bgX = event.transform.x * parallaxMultiplier;
+                const bgY = event.transform.y * parallaxMultiplier;
+                parallaxBg.style.backgroundPosition = `calc(50% + ${bgX}px) calc(50% + ${bgY}px)`;
+            });
+
+        const svg = d3.select("#skill-tree-container")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .call(zoom);
+
+        // Center tree and zoom
+        const svgGroup = svg.append("g")
+            .attr("transform", `translate(${width / 2},${height / 2}) scale(1)`);
+        svg.call(zoom.transform, d3.zoomIdentity.translate(width / 2, height / 2));
+
+        const glowFilters = svg.append("glowFilters");
+        const filter = glowFilters.append("filter")
+            .attr("id", "glow")
+            .attr("x", "-50%").attr("y", "-50%")
+            .attr("width", "200%").attr("height", "200%");
+        filter.append("feGaussianBlur").attr("stdDeviation", "6").attr("result", "coloredBlur");
+        const feMerge = filter.append("feMerge");
+        feMerge.append("feMergeNode").attr("in", "coloredBlur");
+        feMerge.append("feMergeNode").attr("in", "SourceGraphic");
+
+        const root = d3.hierarchy(skillTreeData);
+        const treeLayout = d3.tree()
+            .size([2 * Math.PI, radius])
+            .separation((a, b) => ((a.parent == b.parent ? 1 : 2) + (a.data.cluster === b.data.cluster ? 0 : 1) + (a.data.rank === b.data.rank ? 0 : 1)) / a.depth);
+        treeLayout(root);
+
+        const linkGenerator = d3.linkRadial()
+            .angle(d => d.x)
+            .radius(d => d.y);
+        svgGroup.selectAll(".link")
+            .data(root.links())
+            .enter()
+            .append("path")
+            .attr("class", "link")
+            .attr("fill", "none")
+            .attr("stroke", d => clusterColors[d.target.data.cluster] || "#555")
+            .attr("stroke-width", 4)
+            .attr("stroke-opacity", d => d.target.data.unlocked ? 0.8 : 0.2)
+            .attr("d", linkGenerator)
+            .style("transition", "stroke-opacity 0.4s ease");
+
+        const node = svgGroup.selectAll(".node")
+            .data(root.descendants())
+            .enter()
+            .append("g")
+            .attr("class", "node")
+            .attr("transform", d => `translate(${d.y * Math.cos(d.x - Math.PI/2)},${d.y * Math.sin(d.x - Math.PI/2)})`)
+            .style("cursor", d => d.data.rank < 0 ? "default" : "pointer")
+            .on("mouseover", function(event, d) {
+                if (d.data.rank < 0) { return; }
+                const tooltip = d3.select("#tooltip");
+                const color = clusterColors[d.data.cluster];
+                tooltip.transition("tooltip-show").duration(400).style("opacity", 1);
+                tooltip.html(`<h4 style="color:${color}">${d.data.name}</h4><span style="color:#ddd;">${d.data.description}</span>`)
+                    .style("left", (event.pageX + 15) + "px")
+                    .style("top", (event.pageY - 28) + "px")
+                    .style("border-color", color)
+                    .style("pointer-events", "none");
+
+                d3.select(this).select("circle")
+                    .transition("circle-grow").duration(500)
+                    .attr("r", 28);
+            })
+            .on("mouseout", function(event, d) {
+                d3.select("#tooltip").transition("tooltip-hide").duration(500).style("opacity", 0);
+                d3.select(this).select("circle")
+                    .transition("circle-shrink").duration(1000)
+                    .attr("r", 22);
+            })
+            .on("click", function(event, d) {
+                if (d.depth < 0 || d.data.rank < 0) return;
+
+                d.data.unlocked = !d.data.unlocked;
+
+                d3.select(this).select("circle")
+                    .transition("circle-light").duration(1500)
+                    .attr("fill", d.data.unlocked ? clusterColors[d.data.cluster] : "#111")
+                    .attr("stroke-width", d.data.unlocked ? 4 : 2)
+                    .attr("stroke-opacity", d.data.unlocked ? 1 : 0.75)
+                    .attr("filter", d.data.unlocked ? "url(#glow)" : "url(#glow)");
+
+                const leadingToTarget = (l, n) => {
+                    if (l.target === n) { return true; }
+                    if (n.parent) { return leadingToTarget(l, n.parent); }
+                    return false;
+                }
+
+                svgGroup.selectAll(".link")
+                    .filter(l => leadingToTarget(l, d))
+                    .transition("link-light").duration(300)
+                    .attr("stroke-opacity", d.data.unlocked ? 0.8 : 0.2);
+            });
+
+        node.append("circle")
+            .attr("r", 22)
+            .attr("fill", d => d.data.rank === -1 ? "#00000000" : d.data.unlocked ? clusterColors[d.data.cluster] : "#111")
+            .attr("stroke", d => d.data.rank === -1 ? "#00000000" : clusterColors[d.data.cluster])
+            .attr("stroke-dasharray", d => {
+                switch (d.data.rank) {
+                    case 0: return "60,10";
+                    case 1: return "35,10";
+                    case 2: return "18,10";
+                    case 3: return "9,10";
+                    default: return "none";
+                }
+            })
+            .attr("stroke-width", d => d.data.unlocked ? 4 : 2)
+            .attr("stroke-opacity", d => d.data.unlocked ? 1 : 0.75)
+            .attr("filter", d => d.data.unlocked ? "url(#glow)" : "url(#glow)")
+            .style("transition", "fill 0.3s ease, stroke-width 0.3s ease");
+
+        node.append("text")
+            .attr("class", "node-label")
+            .attr("dy", 45)
+            .text(d => d.data.name);
+    </script>
+</body>
+</html>
