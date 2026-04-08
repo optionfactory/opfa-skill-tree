@@ -81,88 +81,118 @@
         const skillTreeData = {
             name: "Git Gud", cluster: "base", rank: 0, description: "Git SCM Basics<br>📖 Pro Git - <i>Chacon, Straub</i>", unlocked: false,
             children: [{
-                name: "Design Patterns", cluster: "development", rank: 1, description: "📖 Head First Design Patterns - <i>Freeman, Robson</i>", unlocked: false, children: [
-                    { name: "POSA", cluster: "development", rank: 2, description: "Pattern Oriented Software Architecture - Volume 1", unlocked: false, children: [
-                        { name: "Architectural Patterns", cluster: "development", rank: 3, description: "POSA 2, 3, 4, 5", unlocked: false }
-                    ] },
-                    { name: "Functional Programming", cluster: "development", rank: 2, description: "Functional Immutability, Purity, Operations (map, filter, reduce), ...<br>The little schemer. Racket lang. OCAML. Learn you a haskell for great good", unlocked: false }
-                ]
+                name: "DEVELOPMENT", cluster: "development", rank: -1, description: null, unlocked: false, children: [{
+                    name: "Design Patterns", cluster: "development", rank: 1, description: "📖 Head First Design Patterns - <i>Freeman, Robson</i>", unlocked: false, children: [
+                        { name: "POSA", cluster: "development", rank: 2, description: "Pattern Oriented Software Architecture - Volume 1", unlocked: false, children: [
+                            { name: "Architectural Patterns", cluster: "development", rank: 3, description: "POSA 2, 3, 4, 5", unlocked: false }
+                        ] },
+                        { name: "Functional Programming", cluster: "development", rank: 2, description: "Functional Immutability, Purity, Operations (map, filter, reduce), ...<br>The little schemer. Racket lang. OCAML. Learn you a haskell for great good", unlocked: false }
+                    ]
+                }, {
+                    name: "Algorithms and Data Structures", cluster: "development", rank: 1, description: "Lists, Sets, Maps, Sort, Search, ...<br>📖 Data Structures and Algorithms - <i>Aho, Hopcroft, Ullman</i>", unlocked: false, children: [
+                        { name: "Strings", cluster: "development", rank: 2, description: "Charsets, Encodings, Unicode, ...", unlocked: false },
+                        { name: "Datetimes", cluster: "development", rank: 2, description: "Dates, Timezones, ...", unlocked: false },
+                        { name: "Algorithmic Efficiency", cluster: "development", rank: 2, description: "Analyze Algorithms and Data Structures Space and Time Efficiency<br>📖 Introduction to Algorithms - <i>Cormen, Leiserson, Rivest, Stein</i>", unlocked: false, children: [
+                            { name: "Compilers", cluster: "development", rank: 3, description: "Compilers, Programming Languages Formal Semantics, Type Systems, ...<br>📖 Compilers - <i>Aho, Lam, Sethi, Ullman</i>", unlocked: false },
+                        ] }
+                    ]
+                }, {
+                    name: "Java", cluster: "development", rank: 1, description: "📖 Head First Java - <i>Sierra, Bates</i><br>📖 Effective Java - <i>Bloch</i>", unlocked: false,
+                    children: [
+                        { name: "Java API", cluster: "development", rank: 1, description: "Java API SPecification: collections, networking, ...", unlocked: false },
+                        { name: "JUnit", cluster: "development", rank: 1, description: "JUnit guide", unlocked: false, children: [
+                            { name: "Integration Tests", cluster: "development", rank: 2, description: "Integration Tests, JUnit Runners, Spring Runner, ...", unlocked: false },
+                        ] },
+                        { name: "Maven", cluster: "development", rank: 1, description: "mvn goals, pom.xml, ...<br>Baeldung?", unlocked: false },
+                        { name: "Spring Framework", cluster: "development", rank: 2, description: "Spring reference docs: https://docs.spring.io/spring-framework/reference/index.html", unlocked: false, children: [
+                            { name: "Spring Data", cluster: "development", rank: 2, description: "JDBC, JPA, Pagination, Filtering, ...", unlocked: false },
+                            { name: "Spring Security", cluster: "development", rank: 2, description: "Security Filter Chain", unlocked: false },
+                        ] },
+                    ]
+                }, {
+                    name: "HTML", cluster: "development", rank: 1, description: "HTML tags, classes, properties, styles<br>📖 HTML&amp;CSS: Design and Build Websites - <i>Duckett</i>", unlocked: false,
+                    children: [
+                        { name: "JavaScript", cluster: "development", rank: 1, description: "JavaScript: the Good Parts", unlocked: false }
+                    ]
+                }, {
+                    name: "Rust", cluster: "development", rank: 2, description: "📖 Programming Rust - <i>Blandy, Orendorff, Tindall</i>", unlocked: false
+                }, {
+                    name: "Programming Languages", cluster: "development", rank: 3, description: "Overview of Other Programming Languages and Paradigms<br>📖 Seven Languages in Seven Weeks - <i>Tate</i><br>📖 Seven More Languages in Seven Weeks - <i>Tate</i>", unlocked: false
+                }]
             }, {
-                name: "Algorithms and Data Structures", cluster: "development", rank: 1, description: "Lists, Sets, Maps, Sort, Search, ...<br>📖 Data Structures and Algorithms - <i>Aho, Hopcroft, Ullman</i>", unlocked: false, children: [
-                    { name: "Strings", cluster: "development", rank: 2, description: "Charsets, Encodings, Unicode, ...", unlocked: false },
-                    { name: "Datetimes", cluster: "development", rank: 2, description: "Dates, Timezones, ...", unlocked: false },
-                    { name: "Algorithmic Efficiency", cluster: "development", rank: 2, description: "Analyze Algorithms and Data Structures Space and Time Efficiency<br>📖 Introduction to Algorithms - <i>Cormen, Leiserson, Rivest, Stein</i>", unlocked: false, children: [
-                        { name: "Compilers", cluster: "development", rank: 3, description: "Compilers, Programming Languages Formal Semantics, Type Systems, ...<br>📖 Compilers - <i>Aho, Lam, Sethi, Ullman</i>", unlocked: false },
+                name: "OPERATIONS", cluster: "operations", rank: -1, description: null, unlocked: false, children: [{
+                    name: "Linux Shell", cluster: "operations", rank: 1, description: "Basic commands<br>📖 How linux Works - Brian Ward", unlocked: false,
+                    children: [
+                        { name: "make", cluster: "operations", rank: 1, description: "Makefiles", unlocked: false, children: [
+                            { name: "Ansible", cluster: "operations", rank: 2, description: "Ansible", unlocked: false }
+                        ] },
+                        { name: "Cloud basics", cluster: "operations", rank: 1, description: "AWS Cloud Practitioner cert: https://aws.amazon.com/certification/certified-cloud-practitioner/", unlocked: false, children: [
+                            { name: "Terraform", cluster: "operations", rank: 2, description: "Terraform", unlocked: false },
+                            { name: "Monitoring", cluster: "operations", rank: 2, description: "Cloud Monitoring Tools: Grafana, Prometheus, ...", unlocked: false }
+                        ]  },
+                        { name: "Operating Systems", cluster: "operations", rank: 3, description: "📖 Sistemi Operativi - <i>Tanenbaum, Woodhull</i><br>📖 Linux Bible?", unlocked: false }
+                    ]
+                }]
+            }, {
+                name: "SECURITY", cluster: "security", rank: -1, description: null, unlocked: false, children: [{
+                    name: "Cyber Hygiene", cluster: "security", rank: 1, description: "Cyber Hygiene - European Union Agency for Cybersecurity", unlocked: false, children: [
+                        { name: "Vulnerabilities", cluster: "security", rank: 2, description: "Buffer Overflow, XSS, CSRF", unlocked: false, children: [
+                            { name: "Security Reports", cluster: "security", rank: 3, description: "Understand Security Reports and Fix Open Vulnerabilities", unlocked: false }
+                        ]  },
+                        { name: "Application Security", cluster: "security", rank: 2, description: "AAA, ...", unlocked: false, children: [
+                            { name: "Keycloak", cluster: "security", rank: 3, description: "IDM Configuration, Management and Integration", unlocked: false },
+                            { name: "Hardening", cluster: "security", rank: 3, description: "Proxy, HSTS, CSP, CSRF, XSS Protection, Cookies, ...", unlocked: false }
+                        ] },
+                        { name: "Security Protocols", cluster: "security", rank: 2, description: "SSH, TLS, PKI, ...", unlocked: false, children: [
+                            { name: "Cryptography", cluster: "security", rank: 3, description: "📖 Applied Cryptography, 📖 Cryptography Engineering - Bruce Schneier", unlocked: false }
+                        ] }
+                    ]
+                }]
+            }, {
+                name: "NETWORKING", cluster: "networking", rank: -1, description: null, unlocked: false, children: [{
+                    name: "Networking Basics", cluster: "networking", rank: 1, description: "📖 Reti di Computer - <i>Tanenbaum</i><br>Cisco CCNA guide (Cisco specific, but in-depth)", unlocked: false, children: [
+                        { name: "L7 Protocols", cluster: "networking", rank: 2, description: "Application Layer Protocols: HTTP(s), SSH, ...", unlocked: false, children: [
+                            { name: "Network Protocols", cluster: "networking", rank: 3, description: "Common Protocols: DNS, DHCP, ...", unlocked: false },
+                            { name: "Traffic Capture", cluster: "networking", rank: 3, description: "Wireshark, tcpdump, pcap, Captured Traffic Analysis", unlocked: false },
+                        ] },
+                        { name: "Firewall", cluster: "networking", rank: 2, description: "Linux Firewall Configuration", unlocked: false },
+                        { name: "VPN", cluster: "networking", rank: 2, description: "VPN Setup, SSH Tunnelling", unlocked: false }
+                    ]
+                }]
+            }, {
+                name: "ORGANIZATION", cluster: "base", rank: -1, description: null, unlocked: false, children: [
+                    { name: "Learning", cluster: "base", rank: 1, description: "Rendiconta le proprie ore su progetto con precisione<br>Trova in autonomia le voci di rendicontazione<br>Riporta correttemente eventi significativi e criticità di progetto (mancanza di feedback dal cliente, sovraccarico, etc...)<br>Chiede le priorità di sviluppo e gestisce il proprio tempo in base alle informazioni ricevute<br>Focus su singolo task (necessita di supporto per task multipli)", unlocked: false, children: [
+                        { name: "Being Familiar", cluster: "base", rank: 2, description: "È in grado di identificare i problemi organizzativi (es. problemi di comunicazione, sovrapposizioni tra persone diverse, mancato contatto diretto col cliente, processi disfunzionali) e formulare possibili soluzioni (anche qualora non fosse in grado di applicarle)<br>È in grado di decidere le priorità e le dipendenze tra i vari task relativi ad un progetto e organizza il proprio tempo in base a questo<br>È in grado di gestire le proprie assenza prolungate (ferie previste da tempo) gestendo la comunicazione coi colleghi con cui lavora.<br>Stima tempo e effort necessari per le proprie attività, traccia l'avanzamento e identifica scostamenti.<br>Rispetta le deadline condivise, gestendo proattivamente gli scostamenti.<br>Focus su task multipli su singolo progetto.", unlocked: false },
                     ] }
                 ]
             }, {
-                name: "Java", cluster: "development", rank: 1, description: "📖 Head First Java - <i>Sierra, Bates</i><br>📖 Effective Java - <i>Bloch</i>", unlocked: false,
-                children: [
-                    { name: "Java API", cluster: "development", rank: 1, description: "Java API SPecification: collections, networking, ...", unlocked: false },
-                    { name: "JUnit", cluster: "development", rank: 1, description: "JUnit guide", unlocked: false, children: [
-                        { name: "Integration Tests", cluster: "development", rank: 2, description: "Integration Tests, JUnit Runners, Spring Runner, ...", unlocked: false },
-                    ] },
-                    { name: "Maven", cluster: "development", rank: 1, description: "mvn goals, pom.xml, ...<br>Baeldung?", unlocked: false },
-                    { name: "Spring Framework", cluster: "development", rank: 2, description: "Spring reference docs: https://docs.spring.io/spring-framework/reference/index.html", unlocked: false, children: [
-                        { name: "Spring Data", cluster: "development", rank: 2, description: "JDBC, JPA, Pagination, Filtering, ...", unlocked: false },
-                        { name: "Spring Security", cluster: "development", rank: 2, description: "Security Filter Chain", unlocked: false },
-                    ] },
-                ]
+                name: "PRINCIPLES", cluster: "principles", rank: -1, description: null, unlocked: false, children: [{
+                    name: "Agile", cluster: "principles", rank: 1, description: "The Agile Manifesto", unlocked: false, children: [
+                        { name: "Clean Code", cluster: "principles", rank: 1, description: "Agile Principles, SOLID, TDD<br>📖 Clean Code: A Handbook of Agile Software Craftsmanship - <i>Martin</i><br>📖 97 Things Every Programmer Should Know - <i>Henney</i>", unlocked: false },
+                        { name: "Lean", cluster: "principles", rank: 1, description: "📖 Lean Software Development - <i>Poppendieck</i>", unlocked: false, children: [
+                            { name: "A3 Thinking", cluster: "principles", rank: 2, description: "Collaborative Problem Solving", unlocked: false }
+                        ] }
+                    ]
+                }]
             }, {
-                name: "HTML", cluster: "development", rank: 1, description: "HTML tags, classes, properties, styles<br>📖 HTML&amp;CSS: Design and Build Websites - <i>Duckett</i>", unlocked: false,
-                children: [
-                    { name: "JavaScript", cluster: "development", rank: 1, description: "JavaScript: the Good Parts", unlocked: false }
-                ]
-            }, {
-                name: "Rust", cluster: "development", rank: 2, description: "📖 Programming Rust - <i>Blandy, Orendorff, Tindall</i>", unlocked: false
-            }, {
-                name: "Programming Languages", cluster: "development", rank: 3, description: "Overview of Other Programming Languages and Paradigms<br>📖 Seven Languages in Seven Weeks - <i>Tate</i><br>📖 Seven More Languages in Seven Weeks - <i>Tate</i>", unlocked: false
-            }, {
-                name: "Linux Shell", cluster: "operations", rank: 1, description: "Basic commands<br>📖 How linux Works - Brian Ward", unlocked: false,
-                children: [
-                    { name: "make", cluster: "operations", rank: 1, description: "Makefiles", unlocked: false, children: [
-                        { name: "Ansible", cluster: "operations", rank: 2, description: "Ansible", unlocked: false }
-                    ] },
-                    { name: "Cloud basics", cluster: "operations", rank: 1, description: "AWS Cloud Practitioner cert: https://aws.amazon.com/certification/certified-cloud-practitioner/", unlocked: false, children: [
-                        { name: "Terraform", cluster: "operations", rank: 2, description: "Terraform", unlocked: false },
-                        { name: "Monitoring", cluster: "operations", rank: 2, description: "Cloud Monitoring Tools: Grafana, Prometheus, ...", unlocked: false }
-                    ]  },
-                    { name: "Operating Systems", cluster: "operations", rank: 3, description: "📖 Sistemi Operativi - <i>Tanenbaum, Woodhull</i><br>📖 Linux Bible?", unlocked: false }
-                ]
-            }, {
-                name: "Cyber Hygiene", cluster: "security", rank: 1, description: "Cyber Hygiene - European Union Agency for Cybersecurity", unlocked: false, children: [
-                    { name: "Vulnerabilities", cluster: "security", rank: 2, description: "Buffer Overflow, XSS, CSRF", unlocked: false, children: [
-                        { name: "Security Reports", cluster: "security", rank: 3, description: "Understand Security Reports and Fix Open Vulnerabilities", unlocked: false }
-                    ]  },
-                    { name: "Application Security", cluster: "security", rank: 2, description: "AAA, ...", unlocked: false, children: [
-                        { name: "Keycloak", cluster: "security", rank: 3, description: "IDM Configuration, Management and Integration", unlocked: false },
-                        { name: "Hardening", cluster: "security", rank: 3, description: "Proxy, HSTS, CSP, CSRF, XSS Protection, Cookies, ...", unlocked: false }
-                    ] },
-                    { name: "Security Protocols", cluster: "security", rank: 2, description: "SSH, TLS, PKI, ...", unlocked: false, children: [
-                        { name: "Cryptography", cluster: "security", rank: 3, description: "📖 Applied Cryptography, 📖 Cryptography Engineering - Bruce Schneier", unlocked: false }
-                    ] },
-                ]
-            }, {
-                name: "Networking", cluster: "networking", rank: 1, description: "📖 Reti di Computer - <i>Tanenbaum</i><br>Cisco CCNA guide (Cisco specific, but in-depth)", unlocked: false, children: [
-                    { name: "L7 Protocols", cluster: "networking", rank: 2, description: "Application Layer Protocols: HTTP(s), SSH, ...", unlocked: false, children: [
-                        { name: "Network Protocols", cluster: "networking", rank: 3, description: "Common Protocols: DNS, DHCP, ...", unlocked: false },
-                        { name: "Traffic Capture", cluster: "networking", rank: 3, description: "Wireshark, tcpdump, pcap, Captured Traffic Analysis", unlocked: false },
-                    ] },
-                    { name: "Firewall", cluster: "networking", rank: 2, description: "Linux Firewall Configuration", unlocked: false },
-                    { name: "VPN", cluster: "networking", rank: 2, description: "VPN Setup, SSH Tunnelling", unlocked: false }
-                ]
-            }, {
-                name: "Agile", cluster: "principles", rank: 1, description: "The Agile Manifesto", unlocked: false, children: [
-                    { name: "Clean Code", cluster: "principles", rank: 1, description: "Agile Principles, SOLID, TDD<br>📖 Clean Code: A Handbook of Agile Software Craftsmanship - <i>Martin</i><br>📖 97 Things Every Programmer Should Know - <i>Henney</i>", unlocked: false },
-                    { name: "Lean", cluster: "principles", rank: 1, description: "📖 Lean Software Development - <i>Poppendieck</i>", unlocked: false, children: [
-                        { name: "A3 Thinking", cluster: "principles", rank: 2, description: "Collaborative Problem Solving", unlocked: false }
+                name: "COMMUNICATION", cluster: "base", rank: -1, description: null, unlocked: false, children: [
+                    { name: "Learning", cluster: "base", rank: 1, description: "Capace di relazionarsi in modo efficace e costruttivo con i colleghi<br>Impiega un registro di comunicazione corretto (incluso livello di formalità) appropriato al contesto ed all'interlocutore<br>Garantisce il corretto trattamento delle informazioni in base alla loro riservatezza<br>Capace di ricevere feedback", unlocked: false, children: [
+                        { name: "Being Familiar", cluster: "base", rank: 2, description: "Capace di relazionarsi con il personale operativo del cliente<br>Produttivo ed efficace nella stesura di documentazione tecnica ed operativa<br>Si esprime in modo lucido e costruttivo anche in situazioni di conflitto<br>Attivamente chiede e dà feedback ai colleghi<br>Evita sottintesi, esplicitando e completando i propri ragionamenti<br>Attento e capace ad identificare divergenze nell'interpretazione di informazioni tra se e gli interlocutori", unlocked: false },
                     ] }
                 ]
             }, {
-                name: "OptionFactory", cluster: "base", rank: 1, description: "Company Culture, Market and Offering", unlocked: false, children: [
-                    { name: "Organizational Model", cluster: "base", rank: 2, description: "Company Structure, Micro-entrepreneurial Approach<br><a href='https://cdn.fastly.steamstatic.com/apps/valve/Valve_NewEmployeeHandbook.pdf'>📖 Valve new employee handbook</a>", unlocked: false, children: [
-                        { name: "Vision", cluster: "base", rank: 3, description: "Business Vision, Trade-offs, Initiative Propositions", unlocked: false }
+                name: "PROACTIVITY", cluster: "base", rank: -1, description: null, unlocked: false, children: [
+                    { name: "Learning", cluster: "base", rank: 1, description: "Saper cercare in autonomia le informazioni tra le sorgenti a disposizione<br>Saper alzare la mano al momento giusto (tradeoff tra autonomia e necessità di supporto)<br>Focus sulla propria persona", unlocked: false, children: [
+                        { name: "Being Familiar", cluster: "base", rank: 2, description: "Autonomia nell'individuazione di sorgenti di informazione<br>Autonomia nel portare il contesto della criticità<br>Cerca proattivamente consenso sulle decisioni rischiose<br>Focus su propri task<br>Traccia un proprio percorso all'interno dell'azienda (sia formativo sia di responsabilità) e lo persegue con il supporto degli altri, valutandone il progresso", unlocked: false },
                     ] }
+                ]
+            }, {
+                name: "VISION", cluster: "base", rank: -1, description: null, unlocked: false, children: [{
+                    name: "OptionFactory", cluster: "base", rank: 1, description: "Company Culture, Market and Offering", unlocked: false, children: [
+                        { name: "Organizational Model", cluster: "base", rank: 2, description: "Company Structure, Micro-entrepreneurial Approach<br><a href='https://cdn.fastly.steamstatic.com/apps/valve/Valve_NewEmployeeHandbook.pdf'>📖 Valve new employee handbook</a>", unlocked: false, children: [
+                            { name: "Vision", cluster: "base", rank: 3, description: "Business Vision, Trade-offs, Initiative Propositions", unlocked: false }
+                        ] }
+                    ]}
                 ]
             }]
         };
