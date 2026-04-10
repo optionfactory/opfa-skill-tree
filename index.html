@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OpFa Skill Tree</title>
     <link rel="icon" type="image/x-icon" href="favicon.png">
+    <link href="/skilltree.css" rel="stylesheet">
+    <link href="/fog.css" rel="stylesheet">
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <style>
         body {
@@ -15,88 +17,33 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow: hidden;
         }
-
-        #parallax-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-image: url('/background.jpg');
-            background-size: 200%;
-            background-position: center;
-            opacity: 0.4;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        #skill-tree-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 2;
-        }
-
-        .tooltip {
-            position: absolute;
-            text-align: justify;
-            padding: 12px;
-            font-size: 14px;
-            background: rgba(5, 5, 10, 0.95);
-            border: 1px solid;
-            border-radius: 8px;
-            opacity: 0;
-            transition: opacity 0.2s;
-            box-shadow: 0 0 15px rgba(0,0,0,0.8);
-            color: #fff;
-            z-index: 10;
-            pointer-events: none;
-        }
-
-        .tooltip h2 {
-            margin: 0 0 5px 0;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .tooltip h3 {
-            margin: 5px 0;
-            text-align: center;
-        }
-
-        .node-label {
-            pointer-events: none;
-            font-size: 13px;
-            fill: #ffffff;
-            text-anchor: middle;
-            font-weight: bold;
-            text-shadow: 0px 2px 4px #000000, 0px -2px 4px #000000, 2px 0px 4px #000000, -2px 0px 4px #000000;
-        }
-
-        a {
-            color: inherit;
-            pointer-events: auto;
-        }
     </style>
 </head>
 <body>
 
-    <div id="parallax-bg"></div>
-    <div id="skill-tree-container"></div>
-    <div id="tooltip" class="tooltip"></div>
+    <div class="skilltree-bg"></div>
 
+    <div class="fog">
+        <div class="fog-layer fog-1">
+            <div></div>
+            <div></div>
+        </div>
+        <div class="fog-layer fog-2">
+            <div></div>
+            <div></div>
+        </div>
+        <div class="fog-layer fog-3">
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <div class="skilltree"></div>
+
+    <div class="tooltip"></div>
+
+    <script src="/skilltree.js" type="text/javascript"></script>
     <script>
-        // Node structure:
-        //   name: "title" || null
-        //   cluster: "type"
-        //   rank: n (-1 = hide node)
-        //   description: ["lines"] || "line" || null
-        //   resources: [{ title: "name", authors: ["name"] || null, link: "https://..." || null }] || null
-        //   unlocked: true || false || null
-        //   children: [node] || null
         const skillTreeData = {
             name: "Git Gud", cluster: "base", rank: 0, description: "Git SCM Basics", resources: [{ title: "Pro Git", authors: ["Chacon", "Straub"], link: "https://git-scm.com/book/en/v2" }],
             children: [{
@@ -307,6 +254,12 @@
             }]
         };
 
+        const skilltree = new SkillTree(skillTreeData);
+
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const radius = 1000;
+
         const clusterColors = {
             base: "#ffffff", // Pure White
             development: "#33ccff", // Power Azure
@@ -316,178 +269,7 @@
             principles: "#ccaa33" // Enlighting Yellow
         };
 
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-        const radius = 1000;
-
-        const parallaxBg = document.getElementById('parallax-bg');
-
-        const zoom = d3.zoom()
-            .scaleExtent([0.4, 2.5])
-            .on("zoom", (event) => {
-                svgGroup.attr("transform", event.transform);
-                const parallaxMultiplier = 0.3;
-                const bgX = event.transform.x * parallaxMultiplier;
-                const bgY = event.transform.y * parallaxMultiplier;
-                parallaxBg.style.backgroundPosition = `calc(50% + ${bgX}px) calc(50% + ${bgY}px)`;
-            });
-
-        const svg = d3.select("#skill-tree-container")
-            .append("svg")
-            .attr("width", width)
-            .attr("height", height)
-            .call(zoom);
-
-        // Center tree and zoom
-        const svgGroup = svg.append("g")
-            .attr("transform", `translate(${width / 2},${height / 2}) scale(1)`);
-        svg.call(zoom.transform, d3.zoomIdentity.translate(width / 2, height / 2));
-
-        const glowFilters = svg.append("glowFilters");
-        const filter = glowFilters.append("filter")
-            .attr("id", "glow")
-            .attr("x", "-50%").attr("y", "-50%")
-            .attr("width", "200%").attr("height", "200%");
-        filter.append("feGaussianBlur").attr("stdDeviation", "6").attr("result", "coloredBlur");
-        const feMerge = filter.append("feMerge");
-        feMerge.append("feMergeNode").attr("in", "coloredBlur");
-        feMerge.append("feMergeNode").attr("in", "SourceGraphic");
-
-        const root = d3.hierarchy(skillTreeData);
-        const treeLayout = d3.tree()
-            .size([2 * Math.PI, radius])
-            .separation((a, b) => ((a.parent == b.parent ? 1 : 2) + (a.data.cluster === b.data.cluster ? 0 : 1) + (a.data.rank === b.data.rank ? 0 : 1)) + a.depth/2);
-        treeLayout(root);
-
-        const linkGenerator = d3.linkRadial()
-            .angle(d => d.x)
-            .radius(d => d.y);
-        const radialLine = d3.lineRadial()
-            .angle(d => d.x)
-            .radius(d => d.y);
-        const lineGenerator = d => radialLine([d.source, d.target]);
-        svgGroup.selectAll(".link")
-            .data(root.links())
-            .enter()
-            .append("path")
-            .attr("class", "link")
-            .attr("fill", "none")
-            .attr("stroke", d => clusterColors[d.target.data.cluster] || "#555")
-            .attr("stroke-width", 4)
-            .attr("stroke-opacity", d => d.target.data.unlocked ? 0.8 : 0.2)
-            .attr("d", d => d.target.data.rank < 0 ? lineGenerator(d) : linkGenerator(d))
-            .style("transition", "stroke-opacity 0.4s ease");
-
-        const describeResource = (res) => {
-            const authors = res.authors || [];
-            var text = `<strong>${res.title}</strong>`;
-            if (!!authors.length) {
-                text = text + ` &mdash; <em>${authors.join(", ")}</em>`;
-            }
-            if (!!res.link) {
-                text = `<a href="${res.link}" target="_blank">${text}</a>`;
-            }
-            return text;
-        };
-
-        // Node:
-        //   name: "title" || null
-        //   description: ["lines"] || "line" || null
-        //   resources: [{ title: "name", authors: ["name"] || null, link: "https://..." || null }] || null
-        const describe = (node) => {
-            const color = clusterColors[node.cluster];
-            const description = node.description || [];
-            const lines = Array.isArray(description) ? description : [description];
-            const resources = node.resources || [];
-            return `
-            <h2 style="color:${color}">${node.name}</h2>
-            <div style="color:#ddd;">
-                <p>${lines.join('<br>')}</p>
-            </div>
-            <h3><em>Resources:</em></h3>
-            <div>
-                ${resources.map(r => `<p>${describeResource(r)}</p>`).join("")}
-            </div>
-            `;
-        };
-
-        const node = svgGroup.selectAll(".node")
-            .data(root.descendants())
-            .enter()
-            .append("g")
-            .attr("class", "node")
-            .attr("transform", d => `translate(${d.y * Math.cos(d.x - Math.PI/2)},${d.y * Math.sin(d.x - Math.PI/2)})`)
-            .style("cursor", d => d.data.rank < 0 ? "default" : "pointer")
-            .on("mouseenter", function(event, d) {
-                if (d.data.rank < 0) { return; }
-                const tooltip = d3.select("#tooltip");
-                const color = clusterColors[d.data.cluster];
-                tooltip.html(describe(d.data))
-                    .style("left", (event.pageX + 15) + "px")
-                    .style("top", (event.pageY - 28) + "px")
-                    .style("border-color", color)
-                    .transition("tooltip-show").duration(500).style("opacity", 1);
-
-                d3.select(this).select("circle")
-                    .transition("circle-grow").duration(500)
-                    .attr("r", 28);
-            })
-            .on("mouseout", function(event, d) {
-                d3.select("#tooltip")
-                    .transition("tooltip-sustain").duration(5000)
-                    .transition("tooltip-hide").duration(500).style("opacity", 0);
-                d3.select(this).select("circle")
-                    .transition("circle-shrink").duration(500)
-                    .attr("r", 22);
-            })
-            .on("click", function(event, d) {
-                if (d.depth < 0 || d.data.rank < 0) return;
-
-                d.data.unlocked = !d.data.unlocked;
-
-                d3.select(this).select("circle")
-                    .transition("circle-light").duration(1500)
-                    .attr("fill", d.data.unlocked ? clusterColors[d.data.cluster] : "#111")
-                    .attr("stroke-width", d.data.unlocked ? 4 : 2)
-                    .attr("stroke-opacity", d.data.unlocked ? 1 : 0.75)
-                    .attr("filter", d.data.unlocked ? "url(#glow)" : "url(#glow)");
-
-                const leadingToTarget = (l, n) => {
-                    if (l.target === n) { return true; }
-                    if (n.parent) { return leadingToTarget(l, n.parent); }
-                    return false;
-                }
-
-                svgGroup.selectAll(".link")
-                    .filter(l => leadingToTarget(l, d))
-                    .transition("link-light").duration(300)
-                    .attr("stroke-opacity", d.data.unlocked ? 0.8 : 0.2);
-            });
-
-        node.append("circle")
-            .attr("r", 22)
-            .attr("pointer-events", d => d.data.rank < 0 ? "none" : "auto")
-            .attr("fill", d => d.data.rank < 0 ? "#00000000" : d.data.unlocked ? clusterColors[d.data.cluster] : "#111")
-            .attr("stroke", d => d.data.rank < 0 ? "#00000000" : clusterColors[d.data.cluster])
-            .attr("stroke-dasharray", d => {
-                switch (d.data.rank) {
-                    case 0: return "60,10";
-                    case 1: return "35,10";
-                    case 2: return "18,10";
-                    case 3: return "9,10";
-                    default: return "none";
-                }
-            })
-            .attr("stroke-width", d => d.data.unlocked ? 4 : 2)
-            .attr("stroke-opacity", d => d.data.unlocked ? 1 : 0.75)
-            .attr("filter", d => d.data.unlocked ? "url(#glow)" : "url(#glow)")
-            .attr("transform", d => `rotate(${d.x}, 0, 0)`)
-            .style("transition", "fill 0.3s ease, stroke-width 0.3s ease");
-
-        node.append("text")
-            .attr("class", "node-label")
-            .attr("dy", d => Math.cos(d.x) < 0 ? 50 : -50)
-            .text(d => d.data.name);
+        skilltree.draw(width, height, radius, clusterColors, '.skilltree-bg', '.skilltree', '.tooltip');
     </script>
 </body>
 </html>

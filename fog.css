@@ -1,0 +1,79 @@
+.fog {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    filter: blur(1px) grayscale(0.2) saturate(1.2) sepia(0.2);
+}
+
+.fog-layer {
+  width: 200%;
+  height: 100%;
+  position: absolute;
+}
+
+.fog-layer > div {
+  float: left;
+  height: 100%;
+  width: 50%;
+}
+
+@media only screen and (min-width: 280px) and (max-width: 767px) {
+    .fog-layer > div {
+        width: 100%;
+    }
+}
+
+.fog-layer.fog-1 {
+    animation: fog_1_opacity 10s linear infinite, fog_motion 55s linear infinite;
+}
+
+.fog-layer.fog-1 > div {
+    background: url("/img/fog1.png") center center/cover no-repeat transparent;
+}
+
+.fog-layer.fog-2 {
+    animation: fog_2_opacity 17s linear infinite, fog_motion 43s linear infinite;
+}
+
+.fog-layer.fog-2 > div {
+    background: url("/img/fog2.png") center center/cover no-repeat transparent;
+}
+
+.fog-layer.fog-3 {
+    animation: fog_1_opacity 31s linear infinite, fog_motion 47s linear infinite;
+}
+
+.fog-layer.fog-3 > div {
+    background: url("/img/fog3.png") center center/cover no-repeat transparent;
+}
+
+@keyframes fog_1_opacity {
+  0% { opacity: .1; }
+  22% { opacity: .5; }
+  40% { opacity: .28; }
+  58% { opacity: .4; }
+  80% { opacity: .16; }
+  100% { opacity: .1; }
+}
+
+@keyframes fog_2_opacity {
+  0% { opacity: .5; }
+  25% { opacity: .2; }
+  50% { opacity: .1; }
+  80% { opacity: .3; }
+  100% { opacity: .5; }
+}
+
+@keyframes fog_3_opacity {
+  0% { opacity: .8; }
+  27% { opacity: .2; }
+  52% { opacity: .6; }
+  68% { opacity: .3; }
+  100% { opacity: .8; }
+}
+
+@keyframes fog_motion {
+  0% { left: 0; }
+  100% { left: -100%; }
+}
