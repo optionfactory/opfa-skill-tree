@@ -106,6 +106,13 @@ class SkillTree {
             `;
         };
 
+        const nodeFill = (d) => {
+            if (d.data.rank < 0) return "#00000000";
+            if (d.data.unlocked) return clusterColors[d.data.cluster];
+            if ((d.data.resources || []).length === 0) return "#555";
+            return "#111";
+        };
+
         const node = svgGroup.selectAll(".node")
             .data(root.descendants())
             .enter()
@@ -142,7 +149,7 @@ class SkillTree {
 
                 d3.select(this).select("circle")
                     .transition("circle-light").duration(1500)
-                    .attr("fill", d.data.unlocked ? clusterColors[d.data.cluster] : "#111")
+                    .attr("fill", nodeFill(d))
                     .attr("stroke-width", d.data.unlocked ? 4 : 2)
                     .attr("stroke-opacity", d.data.unlocked ? 1 : 0.75)
                     .attr("filter", d.data.unlocked ? "url(#glow)" : "url(#glow)");
@@ -162,7 +169,7 @@ class SkillTree {
         node.append("circle")
             .attr("r", 22)
             .attr("pointer-events", d => d.data.rank < 0 ? "none" : "auto")
-            .attr("fill", d => d.data.rank < 0 ? "#00000000" : d.data.unlocked ? clusterColors[d.data.cluster] : "#111")
+            .attr("fill", d => nodeFill(d))
             .attr("stroke", d => d.data.rank < 0 ? "#00000000" : clusterColors[d.data.cluster])
             .attr("stroke-dasharray", d => {
                 switch (d.data.rank) {
