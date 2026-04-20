@@ -109,6 +109,10 @@
                         ]},
                     ]
                 }, {
+                    name: "REST", cluster: "development", rank: 1, description: "Web architecture, resources representation, URIs, HTTP", resources: [
+                        {title: "Architectural Styles and the Design of Network-based Software Architectures - Chapter 5: Representational State Transfer (REST)", authors: ["R.T. Fielding"], link: "https://roy.gbiv.com/pubs/dissertation/fielding_dissertation.pdf#page=94"}
+                    ]
+                }, {
                     name: "HTML", cluster: "development", rank: 1, description: "HTML tags, classes, properties, styles", resources: [{title: "HTML&amp;CSS: Design and Build Websites", authors: ["Duckett"]}],
                     children: [
                         { name: "JavaScript", cluster: "development", rank: 1, description: null, resources: [{title: "JavaScript: the Good Parts", authors: ["Crockford"]}]}
@@ -154,7 +158,10 @@
                             {title: "AWS Certified Developer - Associate", link: "https://learn.cantrill.io/p/aws-certified-developer-associate"}
                         ],
                         children: [
-                            { name: "Terraform", cluster: "operations", rank: 2, description: "Terraform"},
+                            { name: "Terraform", cluster: "operations", rank: 2, description: "Terraform", resources: [
+                                {title: "Terraform Documentation", link: "https://developer.hashicorp.com/terraform/docs"},
+                                {title: "Terraform AWS Provider", link: "https://registry.terraform.io/providers/hashicorp/aws/latest/docs"}
+                            ]},
                             { name: "Monitoring", cluster: "operations", rank: 2, description: "Cloud Monitoring Tools: Grafana, Prometheus, ..."}
                         ]}, {
                         name: "Operating Systems", cluster: "operations", rank: 3, description: null, resources: [{title: "Operating Systems", authors: ["Tanenbaum", "Woodhull"]}]
@@ -233,7 +240,7 @@
                         ]}, {
                         name: "Lean", cluster: "principles", rank: 1, description: null, resources: [{title: "Lean Software Development", authors: ["Poppendieck"]}],
                         children: [
-                            { name: "A3 Thinking", cluster: "principles", rank: 2, description: "Collaborative Problem Solving" }
+                            { name: "A3 Thinking", cluster: "principles", rank: 2, description: "Collaborative problem solving", resources: [{title: "Understanding A3 Thinking", authors: ["D.K. Sobek II", "A. Smalley"]}] }
                         ]}
                     ]
                 }]
