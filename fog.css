@@ -29,7 +29,7 @@
 }
 
 .fog-layer.fog-1 > div {
-    background: url("/img/fog1.png") center center/cover no-repeat transparent;
+    background: url("img/fog1.png") center center/cover no-repeat transparent;
 }
 
 .fog-layer.fog-2 {
@@ -37,7 +37,7 @@
 }
 
 .fog-layer.fog-2 > div {
-    background: url("/img/fog2.png") center center/cover no-repeat transparent;
+    background: url("img/fog2.png") center center/cover no-repeat transparent;
 }
 
 .fog-layer.fog-3 {
@@ -45,7 +45,7 @@
 }
 
 .fog-layer.fog-3 > div {
-    background: url("/img/fog3.png") center center/cover no-repeat transparent;
+    background: url("img/fog3.png") center center/cover no-repeat transparent;
 }
 
 @keyframes fog_1_opacity {
