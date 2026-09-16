@@ -51,7 +51,7 @@ class SkillTree {
         const root = d3.hierarchy(this.structure);
         const treeLayout = d3.tree()
             .size([2 * Math.PI, radius])
-            .separation((a, b) => ((a.parent == b.parent ? 1 : 2) + (a.data.cluster === b.data.cluster ? 0 : 1) + (a.data.rank === b.data.rank ? 0 : 1)) + a.depth/2);
+            .separation((a, b) => ((a.parent == b.parent ? 1 : 2) + (a.data.cluster === b.data.cluster ? 0 : 1) + (a.data.rank === b.data.rank ? 0 : 1)) + a.depth / 2);
         treeLayout(root);
 
         const linkGenerator = d3.linkRadial()
@@ -118,9 +118,9 @@ class SkillTree {
             .enter()
             .append("g")
             .attr("class", "node")
-            .attr("transform", d => `translate(${d.y * Math.cos(d.x - Math.PI/2)},${d.y * Math.sin(d.x - Math.PI/2)})`)
+            .attr("transform", d => `translate(${d.y * Math.cos(d.x - Math.PI / 2)},${d.y * Math.sin(d.x - Math.PI / 2)})`)
             .style("cursor", d => d.data.rank < 0 ? "default" : "pointer")
-            .on("mouseenter", function(event, d) {
+            .on("mouseenter", function (event, d) {
                 if (d.data.rank < 0) { return; }
                 const tooltip = d3.select(tooltipSelector);
                 const color = clusterColors[d.data.cluster];
@@ -134,7 +134,7 @@ class SkillTree {
                     .transition("circle-grow").duration(500)
                     .attr("r", 28);
             })
-            .on("mouseout", function(event, d) {
+            .on("mouseout", function (event, d) {
                 d3.select(tooltipSelector)
                     .transition("tooltip-sustain").duration(5000)
                     .transition("tooltip-hide").duration(500).style("opacity", 0);
@@ -142,7 +142,7 @@ class SkillTree {
                     .transition("circle-shrink").duration(500)
                     .attr("r", 22);
             })
-            .on("click", function(event, d) {
+            .on("click", function (event, d) {
                 if (d.depth < 0 || d.data.rank < 0) return;
 
                 d.data.unlocked = !d.data.unlocked;

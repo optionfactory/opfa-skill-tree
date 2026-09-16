@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +20,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="skilltree-bg"></div>
@@ -53,162 +55,184 @@
             children: [{
                 name: "DEVELOPMENT", cluster: "development", rank: -1, description: null,
                 children: [{
-                    name: "Design Patterns", cluster: "development", rank: 1, description: null, resources: [{title: "Head First Design Patterns", authors: ["E. Freeman", "E. Robson", "B. Bates", "K. Sierra"]}],
+                    name: "Design Patterns", cluster: "development", rank: 1, description: null, resources: [{ title: "Head First Design Patterns", authors: ["E. Freeman", "E. Robson", "B. Bates", "K. Sierra"] }],
                     children: [{
                         name: "Pattern Systems", cluster: "development", rank: 2, description: null, resources: [
-                            {title: "Head First Software Architecture: A Learner's Guide to Architectural Thinking", authors: ["Raju Gandhi","Mark Richards", "Neal Ford"], reviews: [{author: "Lorenzo Caenazzo", review: "Un libro abbastanza basico, espone in modo semplice e discorsvio diversi pattern architetturali ribadendo a più riprese i tradeoff tra le varie architetture."}]},
-                            {title: "Pattern Oriented Software Architecture - Volume 1", authors: ["Buschmann", "Meunier", "Rohnert", "Sommerlad", "Stal"]}
+                            { title: "Head First Software Architecture: A Learner's Guide to Architectural Thinking", authors: ["Raju Gandhi", "Mark Richards", "Neal Ford"], reviews: [{ author: "Lorenzo Caenazzo", review: "Un libro abbastanza basico, espone in modo semplice e discorsvio diversi pattern architetturali ribadendo a più riprese i tradeoff tra le varie architetture." }] },
+                            { title: "Pattern Oriented Software Architecture - Volume 1", authors: ["Buschmann", "Meunier", "Rohnert", "Sommerlad", "Stal"] }
                         ],
                         children: [{
                             name: "Architectural Patterns", cluster: "development", rank: 3, description: null,
                             resources: [
-                                {title: "Pattern Oriented Software Architecture - Volume 2", authors: ["Schmidt", "Stal", "Rohnert", "Buschmann"]},
-                                {title: "Pattern Oriented Software Architecture - Volume 3", authors: ["Kircher", "Jain"]},
-                                {title: "Pattern Oriented Software Architecture - Volume 4", authors: ["Buschmann", "Henney", "Schmidt"]},
-                                {title: "Pattern Oriented Software Architecture - Volume 5", authors: ["Buschmann", "Henney", "Schmidt"]}
-                            ]}
-                        ]}, {
+                                { title: "Pattern Oriented Software Architecture - Volume 2", authors: ["Schmidt", "Stal", "Rohnert", "Buschmann"] },
+                                { title: "Pattern Oriented Software Architecture - Volume 3", authors: ["Kircher", "Jain"] },
+                                { title: "Pattern Oriented Software Architecture - Volume 4", authors: ["Buschmann", "Henney", "Schmidt"] },
+                                { title: "Pattern Oriented Software Architecture - Volume 5", authors: ["Buschmann", "Henney", "Schmidt"] }
+                            ]
+                        }
+                        ]
+                    }, {
                         name: "Functional Programming", cluster: "development", rank: 2, description: ["Functional immutability, purity, operations (map, filter, reduce).", "Functional languages overview: Scheme, Racket, OCAML, Haskell."],
                         resources: [
-                            {title: "Introduction to Functional Programming", authors: ["E. Meijer"], link: "https://ocw.tudelft.nl/courses/introduction-to-functional-programming/"},
-                            {title: "The Little Schemer", authors: ["Friedman", "Felleisen"]},
-                            {title: "Learn You a Haskell for Great Good!", authors: ["Lipovača"]}
-                        ]}
+                            { title: "Introduction to Functional Programming", authors: ["E. Meijer"], link: "https://ocw.tudelft.nl/courses/introduction-to-functional-programming/" },
+                            { title: "The Little Schemer", authors: ["Friedman", "Felleisen"] },
+                            { title: "Learn You a Haskell for Great Good!", authors: ["Lipovača"] }
+                        ]
+                    }
                     ]
                 }, {
-                    name: "Algorithms and Data Structures", cluster: "development", rank: 1, description: "Lists, sets, maps, trees, sorting, searching", resources: [{title: "Data Structures and Algorithms", authors: ["Aho", "Hopcroft", "Ullman"]}],
+                    name: "Algorithms and Data Structures", cluster: "development", rank: 1, description: "Lists, sets, maps, trees, sorting, searching", resources: [{ title: "Data Structures and Algorithms", authors: ["Aho", "Hopcroft", "Ullman"] }],
                     children: [
-                        { name: "Encodings and Formats", cluster: "development", rank: 2, description: ["Strings: charsets, encodings, unicode", "Time: dates, timezones, formats"], resources: [
-                            {title: "The Absolute Minimum Every Software Developer Absolutely, Positively Must Know About Unicode and Character Sets", authors: ["J. Spolsky"], link: "https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/"},
-                            {title: "What every programmer absolutely, positively needs to know about encodings and character sets to work with text", authors: ["D.C. Zentgraf"], link: "https://kunststube.net/encoding/"},
-                            {title: "UTC is enough for everyone ...right?", authors: ["Z. Holman"], link: "https://zachholman.com/talk/utc-is-enough-for-everyone-right"}
-                        ]},
-                        { name: "Algorithmic Efficiency", cluster: "development", rank: 2, description: ["Analyze algorithms and data structures space and time efficiency"], resources: [{title: "Introduction to Algorithms", authors: ["Th.H. Cormen", "Ch.E. Leiserson", "R.L. Rivest", "Cl. Stein"]}],
-                        children: [
-                            { name: "Compilers", cluster: "development", rank: 3, description: "Compilers, programming languages formal semantics, type systems", resources: [{title: "Compilers", authors: ["Aho", "Lam", "Sethi", "Ullman"]}]},
-                        ] }
+                        {
+                            name: "Encodings and Formats", cluster: "development", rank: 2, description: ["Strings: charsets, encodings, unicode", "Time: dates, timezones, formats"], resources: [
+                                { title: "The Absolute Minimum Every Software Developer Absolutely, Positively Must Know About Unicode and Character Sets", authors: ["J. Spolsky"], link: "https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/" },
+                                { title: "What every programmer absolutely, positively needs to know about encodings and character sets to work with text", authors: ["D.C. Zentgraf"], link: "https://kunststube.net/encoding/" },
+                                { title: "UTC is enough for everyone ...right?", authors: ["Z. Holman"], link: "https://zachholman.com/talk/utc-is-enough-for-everyone-right" }
+                            ]
+                        },
+                        {
+                            name: "Algorithmic Efficiency", cluster: "development", rank: 2, description: ["Analyze algorithms and data structures space and time efficiency"], resources: [{ title: "Introduction to Algorithms", authors: ["Th.H. Cormen", "Ch.E. Leiserson", "R.L. Rivest", "Cl. Stein"] }],
+                            children: [
+                                { name: "Compilers", cluster: "development", rank: 3, description: "Compilers, programming languages formal semantics, type systems", resources: [{ title: "Compilers", authors: ["Aho", "Lam", "Sethi", "Ullman"] }] },
+                            ]
+                        }
                     ]
                 }, {
                     name: "Java", cluster: "development", rank: 1, description: "Java 25 language (objects, methods, generics, lambdas)",
                     resources: [
-                        {title: "Head First Java", authors: ["Sierra", "Bates"]},
-                        {title: "Effective Java", authors: ["Bloch"]},
-                        {title: "Java Programming", link: "https://java-programming.mooc.fi/"}
+                        { title: "Head First Java", authors: ["Sierra", "Bates"] },
+                        { title: "Effective Java", authors: ["Bloch"] },
+                        { title: "Java Programming", link: "https://java-programming.mooc.fi/" }
                     ],
                     children: [
-                        { name: "Java API", cluster: "development", rank: 1, description: "Java API specification: java.util, java.util.concurrent, java.io, java.nio, java.time", resources: [{title: "Java® Platform Version 25 API Specification", link: "https://docs.oracle.com/en/java/javase/25/docs/api/"}]},
-                        { name: "JUnit", cluster: "development", rank: 1, description: "Unit testing with JUnit", resources: [{title: "JUnit User Guide", link: "https://docs.junit.org/"}],
-                        children: [
-                            { name: "Integration Tests", cluster: "development", rank: 2, description: "Integration tests, JUnit runners, Spring runner"},
-                        ]},
-                        { name: "Maven", cluster: "development", rank: 1, description: "Maven goals, pom.xml", resources: [{title: "The Basics of Apache Maven", link: "https://www.baeldung.com/library/maven-ebook"}]},
-                        { name: "Spring Framework", cluster: "development", rank: 2, description: "Web Application Development with Spring Framework", resources: [
-                            {title: "Spring Framework Documentation", link: "https://docs.spring.io/spring-framework/reference/"},
-                            {title: "Spring MVC, Spring Boot and Rest Controllers", link: "htthttps://www.coursera.org/learn/spring-mvc-rest-controller"}
-                        ],
-                        children: [
-                            { name: "Spring Data and Hibernate", cluster: "development", rank: 3, description: "JDBC, Hibernate, JPA, pagination, filtering, sorting"},
-                            { name: "Spring Security", cluster: "development", rank: 3, description: "Spring Security filter chain, authentication methods, roles and authorities, method security"},
-                        ]},
+                        { name: "Java API", cluster: "development", rank: 1, description: "Java API specification: java.util, java.util.concurrent, java.io, java.nio, java.time", resources: [{ title: "Java® Platform Version 25 API Specification", link: "https://docs.oracle.com/en/java/javase/25/docs/api/" }] },
+                        {
+                            name: "JUnit", cluster: "development", rank: 1, description: "Unit testing with JUnit", resources: [{ title: "JUnit User Guide", link: "https://docs.junit.org/" }],
+                            children: [
+                                { name: "Integration Tests", cluster: "development", rank: 2, description: "Integration tests, JUnit runners, Spring runner" },
+                            ]
+                        },
+                        { name: "Maven", cluster: "development", rank: 1, description: "Maven goals, pom.xml", resources: [{ title: "The Basics of Apache Maven", link: "https://www.baeldung.com/library/maven-ebook" }] },
+                        {
+                            name: "Spring Framework", cluster: "development", rank: 2, description: "Web Application Development with Spring Framework", resources: [
+                                { title: "Spring Framework Documentation", link: "https://docs.spring.io/spring-framework/reference/" },
+                                { title: "Spring MVC, Spring Boot and Rest Controllers", link: "htthttps://www.coursera.org/learn/spring-mvc-rest-controller" }
+                            ],
+                            children: [
+                                { name: "Spring Data and Hibernate", cluster: "development", rank: 3, description: "JDBC, Hibernate, JPA, pagination, filtering, sorting" },
+                                { name: "Spring Security", cluster: "development", rank: 3, description: "Spring Security filter chain, authentication methods, roles and authorities, method security" },
+                            ]
+                        },
                     ]
                 }, {
                     name: "REST", cluster: "development", rank: 1, description: "Web architecture, resources representation, URIs, HTTP", resources: [
-                        {title: "Architectural Styles and the Design of Network-based Software Architectures - Chapter 5: Representational State Transfer (REST)", authors: ["R.T. Fielding"], link: "https://roy.gbiv.com/pubs/dissertation/fielding_dissertation.pdf#page=94"}
+                        { title: "Architectural Styles and the Design of Network-based Software Architectures - Chapter 5: Representational State Transfer (REST)", authors: ["R.T. Fielding"], link: "https://roy.gbiv.com/pubs/dissertation/fielding_dissertation.pdf#page=94" }
                     ]
                 }, {
-                    name: "HTML", cluster: "development", rank: 1, description: "HTML tags, classes, properties, styles", resources: [{title: "HTML&amp;CSS: Design and Build Websites", authors: ["Duckett"]}],
+                    name: "HTML", cluster: "development", rank: 1, description: "HTML tags, classes, properties, styles", resources: [{ title: "HTML&amp;CSS: Design and Build Websites", authors: ["Duckett"] }],
                     children: [
-                        { name: "JavaScript", cluster: "development", rank: 1, description: null, resources: [{title: "JavaScript: the Good Parts", authors: ["Crockford"]}]}
+                        { name: "JavaScript", cluster: "development", rank: 1, description: null, resources: [{ title: "JavaScript: the Good Parts", authors: ["Crockford"] }] }
                     ]
                 }, {
-                    name: "SQL", cluster: "development", rank: 1, description: "SQL, relational databases (tables, views, indexes), ER model", resources: [{title: "Principles of Database and Knowledge-Base Systems", authors: ["J.D. Ullman"]}],
+                    name: "SQL", cluster: "development", rank: 1, description: "SQL, relational databases (tables, views, indexes), ER model", resources: [{ title: "Principles of Database and Knowledge-Base Systems", authors: ["J.D. Ullman"] }],
                     children: [
-                        { name: "PostgreSQL", cluster: "development", rank: 3, description: "Locking mechanisms, JSONB, FDWs, PostGIS, Timescale", resources: []}
+                        { name: "PostgreSQL", cluster: "development", rank: 3, description: "Locking mechanisms, JSONB, FDWs, PostGIS, Timescale", resources: [] }
                     ]
                 }, {
-                    name: "Rust", cluster: "development", rank: 2, description: null, resources: [{title: "Programming Rust", authors: ["Blandy", "Orendorff", "Tindall"]}]
+                    name: "Rust", cluster: "development", rank: 2, description: null, resources: [{ title: "Programming Rust", authors: ["Blandy", "Orendorff", "Tindall"] }]
                 }, {
                     name: "Programming Languages", cluster: "development", rank: 3, description: "Overview of other programming languages and paradigms",
                     resources: [
-                        {title: "Seven Languages in Seven Weeks", authors: ["Tate"]},
-                        {title: "Seven More Languages in Seven Weeks", authors: ["Tate"]},
-                        {title: "Programming Languages, Part A", authors: ["D. Grossman"], link: "https://www.coursera.org/learn/programming-languages"},
-                        {title: "Programming Languages, Part B", authors: ["D. Grossman"], link: "https://www.coursera.org/learn/programming-languages-part-b"},
-                        {title: "Programming Languages, Part C", authors: ["D. Grossman"], link: "https://www.coursera.org/learn/programming-languages-part-c"},
+                        { title: "Seven Languages in Seven Weeks", authors: ["Tate"] },
+                        { title: "Seven More Languages in Seven Weeks", authors: ["Tate"] },
+                        { title: "Programming Languages, Part A", authors: ["D. Grossman"], link: "https://www.coursera.org/learn/programming-languages" },
+                        { title: "Programming Languages, Part B", authors: ["D. Grossman"], link: "https://www.coursera.org/learn/programming-languages-part-b" },
+                        { title: "Programming Languages, Part C", authors: ["D. Grossman"], link: "https://www.coursera.org/learn/programming-languages-part-c" },
                     ]
                 }]
             }, {
                 name: "OPERATIONS", cluster: "operations", rank: -1, description: null, children: [{
                     name: "Linux Shell", cluster: "operations", rank: 1, description: null, resources: [
-                        {title: "The Linux command line for beginners", link: "https://ubuntu.com/tutorials/command-line-for-beginners#1-overview"},
-                        {title: "The Linux command line", link: "https://developer.ibm.com/tutorials/l-lpic1-103-1/"},
-                        {title: "Learning the bash Shell", authors: ["C. Newham, B. Rosenblatt"]},
-                        {title: "How Linux Works", authors: ["Ward"]},
-                        {title: "Linux Bible", authors: ["Negus"]}
+                        { title: "The Linux command line for beginners", link: "https://ubuntu.com/tutorials/command-line-for-beginners#1-overview" },
+                        { title: "The Linux command line", link: "https://developer.ibm.com/tutorials/l-lpic1-103-1/" },
+                        { title: "Learning the bash Shell", authors: ["C. Newham, B. Rosenblatt"] },
+                        { title: "How Linux Works", authors: ["Ward"] },
+                        { title: "Linux Bible", authors: ["Negus"] }
                     ],
                     children: [{
                         name: "make", cluster: "operations", rank: 1, description: "Makefiles", children: [
-                            { name: "Ansible", cluster: "operations", rank: 2, description: "Ansible"}
-                        ]}, {
-                        name: "SSH", cluster: "operations", rank: 1, description: "SSH servers, clients, keys", resources: [{title: "SSH Essentials", link: "https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys"}]
-                        }, {
+                            { name: "Ansible", cluster: "operations", rank: 2, description: "Ansible" }
+                        ]
+                    }, {
+                        name: "SSH", cluster: "operations", rank: 1, description: "SSH servers, clients, keys", resources: [{ title: "SSH Essentials", link: "https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys" }]
+                    }, {
                         name: "Systemd", cluster: "operations", rank: 1, description: "Services, units, journal", resources: [
-                            {title: "Systemd Essentials", link: "https://www.digitalocean.com/community/tutorials/systemd-essentials-working-with-services-units-and-the-journal"},
-                            {title: "Managing Services with systemd", link: "https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/system_administrators_guide/chap-managing_services_with_systemd"}
-                        ]}, {
+                            { title: "Systemd Essentials", link: "https://www.digitalocean.com/community/tutorials/systemd-essentials-working-with-services-units-and-the-journal" },
+                            { title: "Managing Services with systemd", link: "https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/system_administrators_guide/chap-managing_services_with_systemd" }
+                        ]
+                    }, {
                         name: "Cloud Basics", cluster: "operations", rank: 1, description: null, resources: [
-                            {title: "AWS Cloud Practitioner", link: "https://aws.amazon.com/certification/certified-cloud-practitioner/"},
-                            {title: "AWS Certified Developer - Associate", link: "https://learn.cantrill.io/p/aws-certified-developer-associate"}
+                            { title: "AWS Cloud Practitioner", link: "https://aws.amazon.com/certification/certified-cloud-practitioner/" },
+                            { title: "AWS Certified Developer - Associate", link: "https://learn.cantrill.io/p/aws-certified-developer-associate" }
                         ],
                         children: [
-                            { name: "Terraform", cluster: "operations", rank: 2, description: "Terraform", resources: [
-                                {title: "Terraform Documentation", link: "https://developer.hashicorp.com/terraform/docs"},
-                                {title: "Terraform AWS Provider", link: "https://registry.terraform.io/providers/hashicorp/aws/latest/docs"}
-                            ]},
-                            { name: "Monitoring", cluster: "operations", rank: 2, description: "Cloud Monitoring Tools: Grafana, Prometheus, ..."}
-                        ]}, {
-                        name: "Operating Systems", cluster: "operations", rank: 3, description: null, resources: [{title: "Operating Systems", authors: ["Tanenbaum", "Woodhull"]}]
+                            {
+                                name: "Terraform", cluster: "operations", rank: 2, description: "Terraform", resources: [
+                                    { title: "Terraform Documentation", link: "https://developer.hashicorp.com/terraform/docs" },
+                                    { title: "Terraform AWS Provider", link: "https://registry.terraform.io/providers/hashicorp/aws/latest/docs" }
+                                ]
+                            },
+                            { name: "Monitoring", cluster: "operations", rank: 2, description: "Cloud Monitoring Tools: Grafana, Prometheus, ..." }
+                        ]
+                    }, {
+                        name: "Operating Systems", cluster: "operations", rank: 3, description: null, resources: [{ title: "Operating Systems", authors: ["Tanenbaum", "Woodhull"] }]
                     }]
                 }]
             }, {
                 name: "SECURITY", cluster: "security", rank: -1, description: null, children: [{
-                    name: "Cyber Hygiene", cluster: "security", rank: 1, description: null, resources: [{title: "Cyber Hygiene", authors: ["European Union Agency for Cybersecurity"], link: "https://www.enisa.europa.eu/topics/cyber-hygiene"}],
+                    name: "Cyber Hygiene", cluster: "security", rank: 1, description: null, resources: [{ title: "Cyber Hygiene", authors: ["European Union Agency for Cybersecurity"], link: "https://www.enisa.europa.eu/topics/cyber-hygiene" }],
                     children: [{
                         name: "Vulnerabilities", cluster: "security", rank: 2, description: "Buffer overflow, XSS, CSRF",
                         children: [
                             { name: "Security Reports", cluster: "security", rank: 3, description: "Understand security reports and fix open vulnerabilities" }
-                        ]}, {
+                        ]
+                    }, {
                         name: "Application Security", cluster: "security", rank: 2, description: "AAA, ...",
                         children: [
-                            { name: "Keycloak", cluster: "security", rank: 3, description: "IDM configuration, management and integration"},
-                            { name: "Hardening", cluster: "security", rank: 3, description: "Proxy, HSTS, CSP, CSRF, XSS protection, cookies, ..."}
-                        ]}, {
+                            { name: "Keycloak", cluster: "security", rank: 3, description: "IDM configuration, management and integration" },
+                            { name: "Hardening", cluster: "security", rank: 3, description: "Proxy, HSTS, CSP, CSRF, XSS protection, cookies, ..." }
+                        ]
+                    }, {
                         name: "Security Protocols", cluster: "security", rank: 2, description: "SSH, TLS, PKI, ...",
                         children: [
-                            { name: "Cryptography", cluster: "security", rank: 3, description: null, resources: [
-                                {title: "Applied Cryptography", authors: ["Schneier"]},
-                                {title: "Cryptography Engineering", authors: ["Ferguson", "Schneier", "Kohno"]}
-                            ]}
-                        ]}
+                            {
+                                name: "Cryptography", cluster: "security", rank: 3, description: null, resources: [
+                                    { title: "Applied Cryptography", authors: ["Schneier"] },
+                                    { title: "Cryptography Engineering", authors: ["Ferguson", "Schneier", "Kohno"] }
+                                ]
+                            }
+                        ]
+                    }
                     ]
                 }]
             }, {
                 name: "NETWORKING", cluster: "networking", rank: -1, description: null,
                 children: [{
                     name: "Networking Basics", cluster: "networking", rank: 1, description: null, resources: [
-                        {title: "Tech Fundamentals", link: "https://learn.cantrill.io/p/tech-fundamentals"},
-                        {title: "Computer Networks", authors: ["Tanenbaum", "Wetherall"]},
-                        {title: "Computer Networking: a Top-Down Approach", authors: ["J.F. Kurose", "K.W. Ross"]},
-                        {title: "Cisco CCNA Official Cert Guide", authors: ["Odom"]}
+                        { title: "Tech Fundamentals", link: "https://learn.cantrill.io/p/tech-fundamentals" },
+                        { title: "Computer Networks", authors: ["Tanenbaum", "Wetherall"] },
+                        { title: "Computer Networking: a Top-Down Approach", authors: ["J.F. Kurose", "K.W. Ross"] },
+                        { title: "Cisco CCNA Official Cert Guide", authors: ["Odom"] }
                     ],
                     children: [{
                         name: "L7 Protocols", cluster: "networking", rank: 2, description: "Application Layer Protocols: HTTP(s), SSH, ...",
                         children: [
                             { name: "Network Protocols", cluster: "networking", rank: 3, description: "Common protocols: DNS, DHCP, ..." },
                             { name: "Traffic Capture", cluster: "networking", rank: 3, description: "Wireshark, tcpdump, pcap, captured traffic analysis" },
-                        ]},
-                        { name: "Firewall", cluster: "networking", rank: 2, description: "Linux firewall configuration" },
-                        { name: "VPN", cluster: "networking", rank: 2, description: "VPN setup, SSH tunnelling" }
+                        ]
+                    },
+                    { name: "Firewall", cluster: "networking", rank: 2, description: "Linux firewall configuration" },
+                    { name: "VPN", cluster: "networking", rank: 2, description: "VPN setup, SSH tunnelling" }
                     ]
                 }]
             }, {
@@ -229,8 +253,10 @@
                             "Stima tempo e effort necessari per le proprie attività, traccia l'avanzamento e identifica scostamenti.",
                             "Rispetta le deadline condivise, gestendo proattivamente gli scostamenti.",
                             "Focus su task multipli su singolo progetto."
-                        ]},
-                    ]}
+                        ]
+                    },
+                    ]
+                }
                 ]
             }, {
                 name: "COMMUNICATION", cluster: "base", rank: -1, description: null,
@@ -249,8 +275,10 @@
                             "Attivamente chiede e dà feedback ai colleghi",
                             "Evita sottintesi, esplicitando e completando i propri ragionamenti",
                             "Attento e capace ad identificare divergenze nell'interpretazione di informazioni tra se e gli interlocutori"
-                        ]}
-                    ]}
+                        ]
+                    }
+                    ]
+                }
                 ]
             }, {
                 name: "PROACTIVITY", cluster: "base", rank: -1, description: null,
@@ -267,33 +295,39 @@
                             "Cerca proattivamente consenso sulle decisioni rischiose",
                             "Focus su propri task",
                             "Traccia un proprio percorso all'interno dell'azienda (sia formativo sia di responsabilità) e lo persegue con il supporto degli altri, valutandone il progresso"
-                        ]}
-                    ]}
+                        ]
+                    }
+                    ]
+                }
                 ]
             }, {
                 name: "VISION", cluster: "base", rank: -1, description: null,
                 children: [{
                     name: "OptionFactory", cluster: "base", rank: 1, description: "Company culture, market and offering",
                     children: [{
-                        name: "Organizational Model", cluster: "base", rank: 2, description: "Company structure, micro-entrepreneurial approach", resources: [{title: "Handbook For New Employees", authors: ["VALVE"], link: "https://cdn.fastly.steamstatic.com/apps/valve/Valve_NewEmployeeHandbook.pdf"}],
+                        name: "Organizational Model", cluster: "base", rank: 2, description: "Company structure, micro-entrepreneurial approach", resources: [{ title: "Handbook For New Employees", authors: ["VALVE"], link: "https://cdn.fastly.steamstatic.com/apps/valve/Valve_NewEmployeeHandbook.pdf" }],
                         children: [
-                            { name: "Vision", cluster: "base", rank: 3, description: "Business vision, trade-offs, initiative propositions"}
-                        ] }
-                    ]}
+                            { name: "Vision", cluster: "base", rank: 3, description: "Business vision, trade-offs, initiative propositions" }
+                        ]
+                    }
+                    ]
+                }
                 ]
             }, {
                 name: "PRINCIPLES", cluster: "principles", rank: -1, description: null,
                 children: [{
-                    name: "Agile", cluster: "principles", rank: 1, description: null, resources: [{title: "Manifesto for Agile Software Development", link: "https://agilemanifesto.org/"}],
+                    name: "Agile", cluster: "principles", rank: 1, description: null, resources: [{ title: "Manifesto for Agile Software Development", link: "https://agilemanifesto.org/" }],
                     children: [{
                         name: "Clean Code", cluster: "principles", rank: 1, description: "Agile principles, SOLID, TDD", resources: [
-                            {title: "Clean Code: A Handbook of Agile Software Craftsmanship", authors: ["Martin"]},
-                            {title: "97 Things Every Programmer Should Know", authors: ["Henney"]}
-                        ]}, {
-                        name: "Lean", cluster: "principles", rank: 1, description: null, resources: [{title: "Lean Software Development", authors: ["Poppendieck"]}],
+                            { title: "Clean Code: A Handbook of Agile Software Craftsmanship", authors: ["Martin"] },
+                            { title: "97 Things Every Programmer Should Know", authors: ["Henney"] }
+                        ]
+                    }, {
+                        name: "Lean", cluster: "principles", rank: 1, description: null, resources: [{ title: "Lean Software Development", authors: ["Poppendieck"] }],
                         children: [
-                            { name: "A3 Thinking", cluster: "principles", rank: 2, description: "Collaborative problem solving", resources: [{title: "Understanding A3 Thinking", authors: ["D.K. Sobek II", "A. Smalley"]}] }
-                        ]}
+                            { name: "A3 Thinking", cluster: "principles", rank: 2, description: "Collaborative problem solving", resources: [{ title: "Understanding A3 Thinking", authors: ["D.K. Sobek II", "A. Smalley"] }] }
+                        ]
+                    }
                     ]
                 }]
             }]
@@ -317,4 +351,5 @@
         skilltree.draw(width, height, radius, clusterColors, '.skilltree-bg', '.skilltree', '.tooltip');
     </script>
 </body>
+
 </html>
